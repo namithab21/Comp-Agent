@@ -839,89 +839,92 @@ def generate_random_log():
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
     
     .stApp {
-        background-color: #f8fafc;
-        color: #0f172a;
-        font-family: 'Outfit', sans-serif;
+        background-color: #f9fafb;
+        color: #111827;
+        font-family: 'Inter', sans-serif;
     }
     
     /* Header layout styling */
     .main-header {
-        font-size: 2.2rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #059669 0%, #2563eb 50%, #7c3aed 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: 2.0rem;
+        font-weight: 700;
+        color: #111827;
+        letter-spacing: -0.02em;
         margin-bottom: 2px;
         padding-top: 10px;
     }
     .sub-header {
         font-size: 0.95rem;
-        color: #64748b;
-        margin-bottom: 20px;
+        color: #6b7280;
+        margin-bottom: 25px;
+        font-weight: 400;
     }
     
     /* Sleek enterprise cards */
     .dashboard-card {
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 14px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
         transition: all 0.2s ease-in-out;
-        color: #334155;
+        color: #374151;
     }
     .dashboard-card:hover {
-        border-color: rgba(37, 99, 235, 0.15);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+        border-color: #d1d5db;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
     
     /* Navigation styling */
     .nav-header {
-        font-weight: 800;
-        font-size: 1.1rem;
-        color: #1e293b;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #4b5563;
         padding: 10px 0;
-        border-bottom: 1px solid #e2e8f0;
-        margin-bottom: 15px;
+        border-bottom: 1px solid #e5e7eb;
+        margin-bottom: 20px;
     }
     
     /* KPI Stats cards */
     .kpi-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 16px;
+        margin-bottom: 24px;
     }
     .kpi-card {
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
     }
     .kpi-title {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #64748b;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #6b7280;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
     .kpi-value {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #0f172a;
-        margin-top: 5px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #111827;
+        margin-top: 8px;
+        line-height: 1;
     }
     .kpi-delta {
         font-size: 0.75rem;
-        margin-top: 5px;
-        font-weight: 600;
+        margin-top: 8px;
+        font-weight: 500;
     }
     
     /* Stepper/Pipeline styling */
@@ -929,12 +932,12 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 20px;
+        padding: 24px;
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 14px;
-        margin-bottom: 25px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
     }
     .pipeline-stage {
         display: flex;
@@ -944,118 +947,118 @@ st.markdown(
         flex: 1;
     }
     .stage-number {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        background: #f1f5f9;
-        color: #64748b;
+        background: #f3f4f6;
+        color: #6b7280;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
-        font-size: 0.9rem;
-        border: 2px solid #cbd5e1;
-        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: 2px solid #e5e7eb;
+        margin-bottom: 12px;
         transition: all 0.3s ease;
     }
     .stage-title {
-        font-weight: 700;
+        font-weight: 600;
         font-size: 0.85rem;
-        color: #64748b;
+        color: #4b5563;
     }
     .stage-desc {
-        font-size: 0.7rem;
-        color: #94a3b8;
-        margin-top: 2px;
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 4px;
     }
     .pipeline-connector {
         height: 2px;
-        background: #e2e8f0;
+        background: #e5e7eb;
         flex-grow: 1;
-        margin: 0 10px;
-        margin-bottom: 36px;
+        margin: 0 12px;
+        margin-bottom: 40px;
         border-radius: 2px;
     }
     
     @keyframes stagePulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-        70% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
     }
     .stage-pulse .stage-number {
         animation: stagePulse 1.8s infinite;
-        border-color: #2563eb;
-        color: #2563eb;
-        background: rgba(37, 99, 235, 0.08);
+        border-color: #3b82f6;
+        color: #3b82f6;
+        background: rgba(59, 130, 246, 0.1);
     }
     .stage-success .stage-number {
-        background: rgba(5, 150, 105, 0.08);
-        color: #059669;
-        border-color: #059669;
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border-color: #10b981;
     }
     .stage-success .stage-title {
-        color: #059669;
+        color: #10b981;
     }
     .stage-skipped .stage-number {
-        background: #f8fafc;
-        color: #94a3b8;
-        border-color: #cbd5e1;
+        background: #f9fafb;
+        color: #9ca3af;
+        border-color: #d1d5db;
         border-style: dashed;
     }
     .stage-skipped .stage-title {
-        color: #94a3b8;
+        color: #9ca3af;
     }
     .stage-approved .stage-number {
-        background: rgba(5, 150, 105, 0.12);
-        color: #059669;
-        border-color: #059669;
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border-color: #10b981;
     }
     .stage-approved .stage-title {
-        color: #059669;
+        color: #10b981;
     }
     .stage-quarantined .stage-number {
-        background: rgba(220, 38, 38, 0.12);
-        color: #dc2626;
-        border-color: #dc2626;
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border-color: #ef4444;
     }
     .stage-quarantined .stage-title {
-        color: #dc2626;
+        color: #ef4444;
     }
     .stage-review .stage-number {
-        background: rgba(217, 119, 6, 0.12);
-        color: #d97706;
-        border-color: #d97706;
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+        border-color: #f59e0b;
     }
     .stage-review .stage-title {
-        color: #d97706;
+        color: #f59e0b;
     }
     
     /* Neon badges */
     .badge-approved {
-        background-color: rgba(5, 150, 105, 0.1);
-        color: #059669;
-        border: 1px solid rgba(5, 150, 105, 0.2);
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2);
         padding: 4px 10px;
-        border-radius: 6px;
-        font-weight: 700;
+        border-radius: 999px;
+        font-weight: 600;
         font-size: 0.75rem;
     }
     .badge-quarantined {
-        background-color: rgba(220, 38, 38, 0.1);
-        color: #dc2626;
-        border: 1px solid rgba(220, 38, 38, 0.2);
+        background-color: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
         padding: 4px 10px;
-        border-radius: 6px;
-        font-weight: 700;
+        border-radius: 999px;
+        font-weight: 600;
         font-size: 0.75rem;
     }
     .badge-review {
-        background-color: rgba(217, 119, 6, 0.1);
-        color: #d97706;
-        border: 1px solid rgba(217, 119, 6, 0.2);
+        background-color: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.2);
         padding: 4px 10px;
-        border-radius: 6px;
-        font-weight: 700;
+        border-radius: 999px;
+        font-weight: 600;
         font-size: 0.75rem;
     }
     
@@ -1063,11 +1066,11 @@ st.markdown(
     .terminal-output {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.8rem;
-        line-height: 1.5;
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-radius: 10px;
-        padding: 15px;
+        line-height: 1.6;
+        background: #111827;
+        border: 1px solid #374151;
+        border-radius: 8px;
+        padding: 16px;
         color: #38bdf8;
         height: 250px;
         overflow-y: auto;
@@ -1075,45 +1078,45 @@ st.markdown(
     
     /* Compliance Certificate receipt */
     .compliance-certificate {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-        border: 1px solid #e2e8f0;
-        border-radius: 14px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     .certificate-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #e2e8f0;
-        padding-bottom: 8px;
+        font-size: 1.0rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 16px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 12px;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
     .certificate-row {
         display: flex;
         justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #f1f5f9;
+        padding: 10px 0;
+        border-bottom: 1px solid #f3f4f6;
         font-size: 0.85rem;
     }
     .certificate-label {
-        color: #64748b;
+        color: #6b7280;
     }
     .certificate-value {
-        color: #0f172a;
-        font-weight: 600;
+        color: #111827;
+        font-weight: 500;
     }
     .data-preview-box {
-        margin-top: 10px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        margin-top: 12px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
         border-radius: 6px;
-        padding: 8px;
+        padding: 12px;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.75rem;
-        color: #334155;
+        font-size: 0.8rem;
+        color: #374151;
         word-break: break-all;
     }
     </style>
@@ -1173,66 +1176,9 @@ if "compliance_model" not in st.session_state:
 with st.sidebar:
     st.markdown("<div class='nav-header'>🛡️ SYSTEM DESK</div>", unsafe_allow_html=True)
     
-    # 🎓 Interactive Demo Guide & Checklist
-    with st.expander("🎓 Interactive Demo Guide", expanded=True):
-        st1_chk = "✅" if st.session_state.demo_step_1_completed else "⬜"
-        st2_chk = "✅" if st.session_state.demo_step_2_completed else "⬜"
-        st3_chk = "✅" if st.session_state.demo_step_3_completed else "⬜"
-        st4_chk = "✅" if st.session_state.demo_step_4_completed else "⬜"
-        st5_chk = "✅" if st.session_state.demo_step_5_completed else "⬜"
-        
-        steps_done = sum([
-            1 if st.session_state.demo_step_1_completed else 0,
-            1 if st.session_state.demo_step_2_completed else 0,
-            1 if st.session_state.demo_step_3_completed else 0,
-            1 if st.session_state.demo_step_4_completed else 0,
-            1 if st.session_state.demo_step_5_completed else 0,
-        ])
-        progress_val = steps_done / 5.0
-        pct = int(progress_val * 100)
-        
-        st.markdown(
-            f"""
-            <div style='font-size:0.8rem; line-height:1.4; color:#334155; margin-bottom:8px;'>
-                <b>Follow these steps to test:</b>
-                <div style='margin-top:5px;'>{st1_chk} <b>1. Ingest Feed</b> (Dashboard tab)</div>
-                <div>{st2_chk} <b>2. Run Base Sandbox</b> (Sandbox tab)</div>
-                <div>{st3_chk} <b>3. Learn Policy Exception</b> (Overrides tab)</div>
-                <div>{st4_chk} <b>4. Verify Sandbox Guard</b> (Sandbox tab)</div>
-                <div>{st5_chk} <b>5. Export PDF Certificate</b> (Sandbox tab)</div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        st.progress(progress_val)
-        st.markdown(f"<div style='text-align:center; font-size:0.75rem; font-weight:bold; color:#1e3a8a; margin-top:3px;'>{pct}% Completed ({steps_done}/5)</div>", unsafe_allow_html=True)
-        
-        if steps_done == 5:
-            st.markdown(
-                """
-                <div style='background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 6px; padding: 8px; text-align: center; color: #065f46; font-size: 0.75rem; font-weight: bold; margin-top: 10px;'>
-                    🎉 Demo Walkthrough Completed! TrustSense dynamic compliance is fully validated.
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            if not st.session_state.balloons_triggered:
-                st.session_state.balloons_triggered = True
-                st.balloons()
-
-    current_page = st.radio(
-        "Workspace View",
-        [
-            "📊 Dashboard & Live Feed",
-            "📁 Bulk File Scanner",
-            "⚙️ Policy Override Manager",
-            "🔬 Single Log Sandbox"
-        ]
-    )
-    
-    st.markdown("---")
-    st.markdown("### Interface Mode")
-    dev_mode = st.toggle("Developer Metrics Panel", value=True)
+    st.markdown("### System Metrics")
+    st.metric("Cumulative Runs", st.session_state.cumulative_runs)
+    st.metric("Total Budget Saved", f"${st.session_state.saved_cost:.5f}")
     
     st.markdown("---")
     st.markdown("### Auditor Memory Status")
@@ -1251,22 +1197,15 @@ with st.sidebar:
         st.session_state.run_history = []
         st.session_state.last_result = None
         st.session_state.bulk_results = None
-        
-        # Reset Walkthrough Steps
-        st.session_state.demo_step_1_completed = False
-        st.session_state.demo_step_2_completed = False
-        st.session_state.demo_step_3_completed = False
-        st.session_state.demo_step_4_completed = False
-        st.session_state.demo_step_5_completed = False
-        st.session_state.balloons_triggered = False
-        
         st.toast("Auditor Memory reset to defaults.")
         st.rerun()
 
 # =====================================================================
 # RENDER PAGE: DASHBOARD & LIVE FEED
 # =====================================================================
-if current_page == "📊 Dashboard & Live Feed":
+tab_scanner, tab_policy, tab_audit, tab_arch = st.tabs(["🔍 Live Scanner", "🧠 Policy Engine", "📊 Audit Vault", "🏗️ System Architecture"])
+
+with tab_scanner:
     st.markdown("### Real-Time Telemetry Monitor Feed")
     st.markdown("Simulate a live data stream of server log telemetries. The workspace automatically routes clean data to fast check engines and flags sensitive PII leaks or regional compliance policy overrides.")
     
@@ -1502,7 +1441,7 @@ if current_page == "📊 Dashboard & Live Feed":
 # =====================================================================
 # RENDER PAGE: BULK FILE SCANNER
 # =====================================================================
-elif current_page == "📁 Bulk File Scanner":
+with tab_audit:
     st.markdown("### Bulk File Compliance Scanner")
     st.markdown("Upload raw transaction log files to run batch compliance scans, mask confidential elements, and generate audit reports.")
     
@@ -1698,7 +1637,7 @@ elif current_page == "📁 Bulk File Scanner":
 # =====================================================================
 # RENDER PAGE: POLICY OVERRIDE MANAGER
 # =====================================================================
-elif current_page == "⚙️ Policy Override Manager":
+with tab_policy:
     st.markdown("### Auditor Policy & Custom Override Center")
     st.markdown("Implements full CRUD capabilities for corporate security guidelines and regional compliance policies. Inject memory overrides that teach the models new rules dynamically without code modifications.")
     
@@ -1835,7 +1774,8 @@ elif current_page == "⚙️ Policy Override Manager":
 # =====================================================================
 # RENDER PAGE: SINGLE LOG SANDBOX
 # =====================================================================
-elif current_page == "🔬 Single Log Sandbox":
+with tab_scanner:
+    st.markdown("---")
     st.markdown("### Interactive Single Log Sandbox")
     st.markdown("Inspect compliance execution traces step-by-step. Interact with custom demo sequences or test custom log records.")
     
@@ -2153,15 +2093,15 @@ elif current_page == "🔬 Single Log Sandbox":
 # =====================================================================
 # BOTTOM TABS: TRANSIT & HISTORICAL LEDGER
 # =====================================================================
-st.markdown("---")
-st.markdown("### Compliance Transparency & Architectural Design")
+with subtab_arch:
+    st.markdown("### Compliance Transparency & Architectural Design")
+    
+    subtab_arch, subtab_workflow = st.tabs([
+        "Cascadeflow Architectural Designs",
+        "Hindsight Session Learning Workflow"
+    ])
 
-tab_arch, tab_workflow = st.tabs([
-    "Cascadeflow Architectural Designs",
-    "Hindsight Session Learning Workflow"
-])
-
-with tab_arch:
+with subtab_arch:
     st.markdown(
         """
         ##### CASCADEFLOW ARCHITECTURAL DESIGNS
@@ -2173,7 +2113,7 @@ with tab_arch:
         """
     )
 
-with tab_workflow:
+with subtab_workflow:
     st.markdown(
         """
         ##### HINDSIGHT SESSION LEARNING WORKFLOW
