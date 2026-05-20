@@ -2093,7 +2093,7 @@ with tab_scanner:
 # =====================================================================
 # BOTTOM TABS: TRANSIT & HISTORICAL LEDGER
 # =====================================================================
-with subtab_arch:
+with tab_arch:
     st.markdown("### Compliance Transparency & Architectural Design")
     
     subtab_arch, subtab_workflow = st.tabs([
