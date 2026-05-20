@@ -1150,6 +1150,18 @@ if "audit_history" not in st.session_state:
     st.session_state.audit_history = []
 if "bulk_results" not in st.session_state:
     st.session_state.bulk_results = None
+if "demo_step_1_completed" not in st.session_state:
+    st.session_state.demo_step_1_completed = False
+if "demo_step_2_completed" not in st.session_state:
+    st.session_state.demo_step_2_completed = False
+if "demo_step_3_completed" not in st.session_state:
+    st.session_state.demo_step_3_completed = False
+if "demo_step_4_completed" not in st.session_state:
+    st.session_state.demo_step_4_completed = False
+if "demo_step_5_completed" not in st.session_state:
+    st.session_state.demo_step_5_completed = False
+if "balloons_triggered" not in st.session_state:
+    st.session_state.balloons_triggered = False
 if "compliance_model" not in st.session_state:
     model = B2BComplianceModel()
     model.reload_overrides(compliance_memory.data)
@@ -1161,6 +1173,53 @@ if "compliance_model" not in st.session_state:
 with st.sidebar:
     st.markdown("<div class='nav-header'>🛡️ SYSTEM DESK</div>", unsafe_allow_html=True)
     
+    # 🎓 Interactive Demo Guide & Checklist
+    with st.expander("🎓 Interactive Demo Guide", expanded=True):
+        st1_chk = "✅" if st.session_state.demo_step_1_completed else "⬜"
+        st2_chk = "✅" if st.session_state.demo_step_2_completed else "⬜"
+        st3_chk = "✅" if st.session_state.demo_step_3_completed else "⬜"
+        st4_chk = "✅" if st.session_state.demo_step_4_completed else "⬜"
+        st5_chk = "✅" if st.session_state.demo_step_5_completed else "⬜"
+        
+        steps_done = sum([
+            1 if st.session_state.demo_step_1_completed else 0,
+            1 if st.session_state.demo_step_2_completed else 0,
+            1 if st.session_state.demo_step_3_completed else 0,
+            1 if st.session_state.demo_step_4_completed else 0,
+            1 if st.session_state.demo_step_5_completed else 0,
+        ])
+        progress_val = steps_done / 5.0
+        pct = int(progress_val * 100)
+        
+        st.markdown(
+            f"""
+            <div style='font-size:0.8rem; line-height:1.4; color:#334155; margin-bottom:8px;'>
+                <b>Follow these steps to test:</b>
+                <div style='margin-top:5px;'>{st1_chk} <b>1. Ingest Feed</b> (Dashboard tab)</div>
+                <div>{st2_chk} <b>2. Run Base Sandbox</b> (Sandbox tab)</div>
+                <div>{st3_chk} <b>3. Learn Policy Exception</b> (Overrides tab)</div>
+                <div>{st4_chk} <b>4. Verify Sandbox Guard</b> (Sandbox tab)</div>
+                <div>{st5_chk} <b>5. Export PDF Certificate</b> (Sandbox tab)</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.progress(progress_val)
+        st.markdown(f"<div style='text-align:center; font-size:0.75rem; font-weight:bold; color:#1e3a8a; margin-top:3px;'>{pct}% Completed ({steps_done}/5)</div>", unsafe_allow_html=True)
+        
+        if steps_done == 5:
+            st.markdown(
+                """
+                <div style='background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 6px; padding: 8px; text-align: center; color: #065f46; font-size: 0.75rem; font-weight: bold; margin-top: 10px;'>
+                    🎉 Demo Walkthrough Completed! TrustSense dynamic compliance is fully validated.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+            if not st.session_state.balloons_triggered:
+                st.session_state.balloons_triggered = True
+                st.balloons()
+
     current_page = st.radio(
         "Workspace View",
         [
@@ -1192,6 +1251,15 @@ with st.sidebar:
         st.session_state.run_history = []
         st.session_state.last_result = None
         st.session_state.bulk_results = None
+        
+        # Reset Walkthrough Steps
+        st.session_state.demo_step_1_completed = False
+        st.session_state.demo_step_2_completed = False
+        st.session_state.demo_step_3_completed = False
+        st.session_state.demo_step_4_completed = False
+        st.session_state.demo_step_5_completed = False
+        st.session_state.balloons_triggered = False
+        
         st.toast("Auditor Memory reset to defaults.")
         st.rerun()
 
@@ -1282,6 +1350,7 @@ if current_page == "📊 Dashboard & Live Feed":
     
     # Batch Processing execution loop
     if sim_batch_20 or sim_batch_50:
+        st.session_state.demo_step_1_completed = True
         batch_size = 20 if sim_batch_20 else 50
         progress_bar = st.progress(0)
         status_text = st.empty()
@@ -1711,7 +1780,56 @@ elif current_page == "⚙️ Policy Override Manager":
                 
                 compliance_memory.add(full_policy_text, metadata)
                 st.session_state.compliance_model.reload_overrides(compliance_memory.data)
+                st.session_state.demo_step_3_completed = True
                 st.toast("Policy Exception added successfully. Active Compliance Model retrained!")
+                st.rerun()
+
+        st.markdown("---")
+        st.markdown("##### 🏛️ Pre-configured Regulatory Presets")
+        st.markdown("Select a standard industry compliance preset to inject instantly:")
+        preset_reg = st.selectbox(
+            "Select Regulation Template:",
+            [
+                "Choose a preset template...",
+                "HIPAA (Patient Health PII)",
+                "PCI-DSS (Credit Card Info)",
+                "EU-GDPR (Tracking Cookies)",
+                "SEC (Insider Codenames)"
+            ]
+        )
+        if preset_reg != "Choose a preset template...":
+            if preset_reg == "HIPAA (Patient Health PII)":
+                preset_pattern = "PATIENT-ID"
+                preset_desc = "Protected Health Information (PHI) like medical record codes and Patient IDs represent HIPAA compliance variables and must be quarantined."
+            elif preset_reg == "PCI-DSS (Credit Card Info)":
+                preset_pattern = "CCN-PAY"
+                preset_desc = "Credit Card Numbers and payment payload metadata under PCI-DSS standards represent high-risk data and must be quarantined."
+            elif preset_reg == "EU-GDPR (Tracking Cookies)":
+                preset_pattern = "TRK-EU"
+                preset_desc = "European session trackers and telemetry tracking codes represent PII variables under EU GDPR privacy rules and must be quarantined."
+            elif preset_reg == "SEC (Insider Codenames)":
+                preset_pattern = "PROJECT-X"
+                preset_desc = "Securities Insider Information: Codenames representing unreleased merger negotiations or trade sheets must be held for manual security review."
+                
+            st.info(f"**Target Pattern:** `{preset_pattern}`\n\n**Justification:** {preset_desc}")
+            
+            if st.button("➕ Inject Preset Regulation & Retrain", use_container_width=True):
+                full_policy_text = f"Policy Exception: {preset_pattern} elements are restricted. Reason: {preset_desc}"
+                metadata = {
+                    "rule_id": str(uuid.uuid4())[:8].upper(),
+                    "type": "custom_override",
+                    "created_by": "System Preset",
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "severity": "HIGH" if preset_reg != "SEC (Insider Codenames)" else "MEDIUM",
+                    "target_pattern": preset_pattern
+                }
+                compliance_memory.add(full_policy_text, metadata)
+                st.session_state.compliance_model.reload_overrides(compliance_memory.data)
+                
+                # Mark Step 3 of demo completed!
+                st.session_state.demo_step_3_completed = True
+                
+                st.toast(f"Preset '{preset_reg}' injected successfully! Model retrained.")
                 st.rerun()
 
 # =====================================================================
@@ -1743,6 +1861,7 @@ elif current_page == "🔬 Single Log Sandbox":
             override_text = "TRK-EU tracking variants represent localized tracking IDs and must be quarantined as sensitive PII under EU GDPR compliance mandates."
             compliance_memory.add(override_text, {"type": "manual_override", "timestamp": time.strftime("%H:%M:%S")})
             st.session_state.compliance_model.reload_overrides(compliance_memory.data)
+            st.session_state.demo_step_3_completed = True
             st.session_state.last_result = None
             st.toast("Policy override injected. Model retrained!")
             st.rerun()
@@ -1922,6 +2041,12 @@ elif current_page == "🔬 Single Log Sandbox":
         st.session_state.last_saved = saved
         st.session_state.last_logs = logs
         
+        # Check Walkthrough steps
+        if final_state["final_decision"] == "APPROVED":
+            st.session_state.demo_step_2_completed = True
+        elif final_state["final_decision"] == "QUARANTINED":
+            st.session_state.demo_step_4_completed = True
+        
         st.session_state.run_history.append({
             "Run": st.session_state.cumulative_runs,
             "Latency": final_state["runtime_metrics"]["latency_ms"],
@@ -1988,13 +2113,17 @@ elif current_page == "🔬 Single Log Sandbox":
                 unsafe_allow_html=True
             )
             if REPORTLAB_AVAILABLE:
+                def mark_download_complete():
+                    st.session_state.demo_step_5_completed = True
+                
                 pdf_data = generate_pdf_report(res, st.session_state.last_saved, st.session_state.last_ledger["integrity_hash"])
                 st.download_button(
                     label="📥 Download PDF Compliance Report",
                     data=pdf_data,
                     file_name=f"compliance_report_{st.session_state.last_ledger['integrity_hash']}.pdf",
                     mime="application/pdf",
-                    use_container_width=True
+                    use_container_width=True,
+                    on_click=mark_download_complete
                 )
             
             # Interactive Hindsight Feedback mechanism
@@ -2016,6 +2145,7 @@ elif current_page == "🔬 Single Log Sandbox":
                         "severity": "HIGH"
                     })
                     st.session_state.compliance_model.reload_overrides(compliance_memory.data)
+                    st.session_state.demo_step_3_completed = True
                     st.session_state.last_result = None
                     st.toast("System override applied! compliance agent has adapted to this instruction.")
                     st.rerun()
